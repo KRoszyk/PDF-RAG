@@ -1,1 +1,4 @@
 pdf_path: "../pdf/styl.pdf"
+vector_db_path: "../vector_db_faiss"
+
+embedding_model_name: "sentence-transformers/all-mpnet-base-v2"
