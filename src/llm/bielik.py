@@ -6,9 +6,9 @@ from langchain_community.vectorstores import FAISS
 
 
 class LLM:
-    def __init__(self, model_name: str, template: str, embedding_model: HuggingFaceEmbeddings) -> None:
+    def __init__(self, llm__model_name: str, template: str, embedding_model: HuggingFaceEmbeddings) -> None:
         self.embedding_model = embedding_model
-        self.llm_model = OllamaLLM(model=model_name)
+        self.llm_model = OllamaLLM(model=llm__model_name)
         self.prompt = PromptTemplate(input_variables=["question", "context"], template=template)
         self.llm_chain = LLMChain(prompt=self.prompt, llm=self.llm_model, verbose=True)
         self.question = "Co tam?"
