@@ -15,7 +15,7 @@ def run_pipeline(config) -> None:
 
         pdf_path = config_data.get('pdf_path')  # load path to pdf
         embedding_model_name = config_data.get('embedding_model_name')  # load name of embedding model
-        llm_model_name = config_data.get('llm_model_name')  # load name of embedding model
+        llm_model_name = config_data.get('llm_model_name')  # load name of llm model
         vector_db_path = config_data.get('vector_db_path')  # load path to save vector db
         template = config_data.get('template')  # load template
 
