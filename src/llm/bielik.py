@@ -12,7 +12,6 @@ class LLM:
         self.prompt = PromptTemplate(input_variables=["question", "context"], template=template)
         self.llm_chain = LLMChain(prompt=self.prompt, llm=self.llm_model, verbose=True)
         self.question = "Co tam?"
-        self.vector_db_path = None
         self.vector_db = None
 
     def load_vector_db(self, vector_db_path: str) -> None:
