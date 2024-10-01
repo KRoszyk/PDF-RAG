@@ -3,8 +3,8 @@ import yaml
 
 from langchain_huggingface import HuggingFaceEmbeddings
 from src.pdf_to_text.extraction import get_sentences_from_pdf
-from src.llm.bielik import LLM
-from vector_db.vector_db import create_vector_db
+from src.llm.model import LLM
+from vector_db.initialize import create_vector_db
 
 
 @click.command()
