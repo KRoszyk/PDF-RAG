@@ -1,5 +1,5 @@
-pdf_path: "../pdf/styl.pdf"
-vector_db_path: "../vector_db_faiss"
+pdf_path: "../data/pdf/styl.pdf"
+vector_db_path: "../data/vector_db_faiss"
 
 embedding_model_name: "sdadas/mmlw-roberta-large"
 llm_model_name: "mwiewior/bielik"
