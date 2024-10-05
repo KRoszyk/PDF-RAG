@@ -1,2 +1,3 @@
 paths:
-  path_pdf: 'pdf_files\plik.pdf'
+  path_pdf: 'pdf\plik.pdf'
+  path_modified_pdf:  'pdf\modified_plik.pdf'
