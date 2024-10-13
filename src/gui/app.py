@@ -25,7 +25,7 @@ def handle_file_upload(path: str):
 
 
 def generate_text():
-    messages = st.container()
+    messages = st.container(height=5000)
     input_placeholder = st.empty()
 
     if prompt := input_placeholder.chat_input("Wpisz wiadomość:"):
@@ -38,7 +38,6 @@ def generate_text():
                 st.chat_message("user").write(message["content"])
             elif message["role"] == "assistant":
                 st.chat_message("assistant").write(message["content"])
-
 
 def mark_text(path_file: str, path_modified_file: str):
     doc = fitz.open(path_file)
@@ -68,6 +67,8 @@ def show_pdf(file_uploaded: bool, path_file: str, path_modified_file: str):
 
 
 def create_gui(path_file: str, path_modified_file: str):
+    st.set_page_config(layout="wide")
+
     col1, col2 = st.columns([1, 1])
     load_css()
 
@@ -83,14 +84,15 @@ def create_gui(path_file: str, path_modified_file: str):
     with col1:  # left page (pdf)
         st.markdown('<h1 class="custom-title">Wrzucanie pliku</h1>', unsafe_allow_html=True)
         file_uploaded = handle_file_upload(path_file)
-        show_pdf(file_uploaded, path_file, path_modified_file)
+        placeholder = st.container(key="plh1")
+        with placeholder:
+            show_pdf(file_uploaded, path_file, path_modified_file)
 
     with col2:  # right page (chat)
         st.markdown('<h1 class="custom-title">Chat</h1>', unsafe_allow_html=True)
-        if file_uploaded:
-            generate_text()
-        else:
-            st.info("Załaduj plik PDF, aby rozpocząć chat.")
-
-
-
+        placeholder = st.container(key="plh2")
+        with placeholder:
+            if file_uploaded:
+                generate_text()
+            else:
+                st.info("Załaduj plik PDF, aby rozpocząć chat.")
