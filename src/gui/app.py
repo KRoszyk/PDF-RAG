@@ -81,18 +81,18 @@ def create_gui(path_file: str, path_modified_file: str):
     if "uploaded_file" not in st.session_state:
         st.session_state.uploaded_file = []
 
-    with col1:  # left page (pdf)
+    with col1:
         st.markdown('<h1 class="custom-title">Wrzucanie pliku</h1>', unsafe_allow_html=True)
         file_uploaded = handle_file_upload(path_file)
-        placeholder = st.container(key="plh1")
-        with placeholder:
-            show_pdf(file_uploaded, path_file, path_modified_file)
-
-    with col2:  # right page (chat)
         st.markdown('<h1 class="custom-title">Chat</h1>', unsafe_allow_html=True)
-        placeholder = st.container(key="plh2")
+        placeholder = st.container(key="plh1")
         with placeholder:
             if file_uploaded:
                 generate_text()
             else:
                 st.info("Załaduj plik PDF, aby rozpocząć chat.")
+
+    with col2:
+        placeholder = st.container(key="plh2")
+        with placeholder:
+            show_pdf(file_uploaded, path_file, path_modified_file)
