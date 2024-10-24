@@ -2,5 +2,5 @@ paths:
   path_pdf: 'data\pdf\plik.pdf'
   path_modified_pdf:  'data\pdf\modified_plik.pdf'
 
-message_container_height: 5000
+message_container_height: 350
 layout_division: [1, 1]

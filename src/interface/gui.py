@@ -1,75 +1,42 @@
 import streamlit as st
-import os
-import fitz
-
-from streamlit_pdf_viewer import pdf_viewer
-from .initialize import initialize_variables
+from .css import load_css
+from .pdf_loader import Pdf_loader
+from .pdf_loader import Chat
+from .pdf_loader import PDF_viewer
 
 
 class Gui:
-    def __init__(self, path_file: str, path_modified_file: str, message_container_height: int) -> None:
-
-        initialize_variables()
-
-        self.messages = st.session_state.messages
-        self.uploaded_file = st.session_state.uploaded_file
+    def __init__(self, path_file: str, path_modified_file: str, message_container_height: int,
+                 layout_division: int) -> None:
         self.path_file = path_file
-        self.path_modified_file = path_modified_file
+        # self.path_modified_file = path_modified_file
         self.message_container_height = message_container_height
-        self.is_pdf_visible = False
-        self.is_file_uploaded = False
+        self.layout_division = layout_division
+        self.initialization()
 
-    def prompt_and_prediction(self) -> None:
-        messages_container = st.container(height=self.message_container_height)
-        input_placeholder = st.empty()
+    def initialization(self):
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
 
-        if prompt := input_placeholder.chat_input("Enter your message:"):
-            self.messages.append({"role": "user", "content": prompt})
-            self.messages.append({"role": "assistant", "content": f"{prompt}"})
+        if "show_pdf" not in st.session_state:
+            st.session_state.show_pdf = False
 
-        with messages_container:
-            for message in self.messages:
-                if message["role"] == "user":
-                    st.chat_message("user").write(message["content"])
-                elif message["role"] == "assistant":
-                    st.chat_message("assistant").write(message["content"])
+        if "disabled_chat" not in st.session_state:
+            st.session_state.disabled_chat = True
 
-    def save_file(self) -> None:
-        with open(os.path.join(self.path_file), "wb") as f:
-            f.write(self.uploaded_file.getbuffer())
-        self.is_file_uploaded = True
+    def show_gui(self) -> None:
+        load_css()
+        col1, col2 = st.columns(self.layout_division)
 
-    def upload_file(self) -> None:
-        self.uploaded_file = st.file_uploader("Upload PDF file", type="pdf")
-
-        if self.uploaded_file is not None and self.is_file_uploaded is False:
-            self.save_file()
-
-        elif self.uploaded_file is None:
-            self.is_pdf_visible = False
-            self.is_file_uploaded = False
-            self.messages = []
-            st.warning("No file was uploaded")
-
-    def mark_context(self) -> None:
-        doc = fitz.open(self.path_file)
-        for page_num in range(len(doc)):
-            page = doc.load_page(page_num)
-            search_text = 'MASTER DATA TRAINEE'
-            text_instances = page.search_for(search_text)
-
-            for inst in text_instances:
-                highlight = page.add_rect_annot(inst)
-                highlight.set_colors(stroke=(1, 0, 0))
-                highlight.update()
-
-        doc.save(self.path_modified_file)
-        doc.close()
-
-    def show_file(self) -> None:
-        if st.button("Show PDF") and self.uploaded_file is not None:
-            self.is_pdf_visible = True
-            self.mark_context()
-
-        if self.is_pdf_visible:
-            pdf_viewer(self.path_modified_file)
+        with col1:
+            st.markdown('<h1 class="custom-title">Load file</h1>', unsafe_allow_html=True)
+            chat = Chat(st.session_state.messages, self.message_container_height)
+            chat.chat_handling()
+            if st.session_state['show_pdf'] == False:
+                pdf_loader = Pdf_loader(self.path_file)
+            chat.show_chat()
+        with col2:
+            placeholder = st.container(key="plh2")
+            with placeholder:
+                pdf_viewer = PDF_viewer(self.path_file)
+                st.markdown('<h1 class="custom-title"></h1>', unsafe_allow_html=True)
