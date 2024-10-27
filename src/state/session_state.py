@@ -1,8 +1,24 @@
 import random
 import string
-
+from typing import List, Union
 from pydantic import BaseModel
 import streamlit as st
+
+
+class AssistanceMessage(BaseModel):
+    role: str = "assistant"
+    messages: List[str] = []
+
+
+class UserMessages(BaseModel):
+    role: str = "user"
+    messages: List[str] = []
+
+
+class Chat(BaseModel):
+    messages_container: int = 450
+    input_text_info: str = "Enter your message:"
+    disabled: bool = True
 
 
 class PDFUploader(BaseModel):
@@ -25,6 +41,9 @@ class Title(BaseModel):
 class Column1(BaseModel):
     title: Title = Title(text="Load file")
     uploader: PDFUploader = PDFUploader()
+    user: UserMessages = UserMessages()
+    assistant: AssistanceMessage = AssistanceMessage()
+    chat: Chat = Chat()
 
 
 class Column2(BaseModel):
