@@ -4,6 +4,12 @@ import streamlit as st
 from session_state import GUIState
 from st_elements import Column1, Column2
 
+from pydantic import BaseModel
+import streamlit as st
+
+from session_state import GUIState
+from st_elements import Column1, Column2
+
 
 class GUI(BaseModel):
     state: GUIState = GUIState()
@@ -14,7 +20,7 @@ class GUI(BaseModel):
         col1, col2 = st.columns([1, 1])
         with col1:
             # TODO: Check why this state isn't passed into column1 object (hacked with passing new_state).
-            self.column1.show(new_state=self.state)
+            self.column1.show()
         with col2:
             self.column2.show()
 

@@ -17,6 +17,7 @@ class PDFUploader(BaseModel):
 class Button(BaseModel):
     name: str = ""
 
+
 class Title(BaseModel):
     text: str = ""
 

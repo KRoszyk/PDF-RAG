@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 from session_state import GUIState
 
+
 class Column1(BaseModel):
     state: GUIState
 
