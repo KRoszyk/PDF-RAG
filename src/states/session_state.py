@@ -1,8 +1,9 @@
 import random
 import string
-from typing import List, Union
-from pydantic import BaseModel
 import streamlit as st
+
+from typing import List
+from pydantic import BaseModel
 
 
 class AssistanceMessage(BaseModel):
