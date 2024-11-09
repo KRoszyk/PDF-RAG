@@ -15,5 +15,6 @@ class LeftColumn:
 
 		FileUploader(state=self.state)
 
+		# Initialize a chat inside a container to apply styling to it.
 		with st.container(key=chat_state.key):
 			Chat(state=self.state)
