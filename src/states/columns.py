@@ -6,9 +6,13 @@ from src.states.pdf import PDFUploaderState
 
 
 class LeftColumnState(BaseModel):
-	uploader: PDFUploaderState = PDFUploaderState()
-	chat: ChatState = ChatState()
+    uploader: PDFUploaderState = PDFUploaderState()
+    chat: ChatState = ChatState()
+    delete_button: ButtonState = ButtonState(name="Delete PDF")
+    clear_button: ButtonState = ButtonState(name="Clear PDF")
 
 
 class RightColumnState(BaseModel):
-	delete_button: ButtonState = ButtonState(name="Delete PDF")
+    count_button: ButtonState = ButtonState(name="0/0")
+    previous_button: ButtonState = ButtonState(name="previous")
+    next_button: ButtonState = ButtonState(name="next")

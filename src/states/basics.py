@@ -2,9 +2,9 @@ from pydantic import BaseModel
 
 
 class ButtonState(BaseModel):
-	name: str = ""
+    name: str = ""
 
 
 class TitleState(BaseModel):
-	text: str = ""
-	key: str = ""
+    text: str = ""
+    key: str = ""
