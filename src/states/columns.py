@@ -9,7 +9,7 @@ class LeftColumnState(BaseModel):
     uploader: PDFUploaderState = PDFUploaderState()
     chat: ChatState = ChatState()
     delete_button: ButtonState = ButtonState(name="Delete PDF")
-    clear_button: ButtonState = ButtonState(name="Clear PDF")
+    clear_button: ButtonState = ButtonState(name="Clear chat")
 
 
 class RightColumnState(BaseModel):
