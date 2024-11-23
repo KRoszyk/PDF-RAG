@@ -12,4 +12,7 @@ class PdfViewer:
         uploader_state = self.state.left_col.uploader
 
         if uploader_state.is_file_uploaded is True:
-            pdf_viewer(uploader_state.file)
+            pdf_viewer(
+                input=uploader_state.file,
+                key=self.state.right_col.pdf_viewer.key
+            )
