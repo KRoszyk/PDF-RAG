@@ -1,6 +1,6 @@
 import streamlit as st
 
-from core.gui import GUI
+from src.core.gui import GUI
 from src.states.gui import GUIState
 
 

@@ -8,3 +8,7 @@ class ButtonState(BaseModel):
 class TitleState(BaseModel):
     text: str = ""
     key: str = ""
+
+
+class TextState(BaseModel):
+    text: str = ""

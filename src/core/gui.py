@@ -1,5 +1,5 @@
-from attrs import define
 import streamlit as st
+from attrs import define
 
 from src.core.columns.left import LeftColumn
 from src.core.columns.right import RightColumn

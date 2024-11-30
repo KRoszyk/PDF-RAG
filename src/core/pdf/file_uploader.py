@@ -1,5 +1,6 @@
-from attrs import define
 import streamlit as st
+from attrs import define
+
 from src.states.gui import GUIState
 
 
@@ -13,11 +14,11 @@ class FileUploader:
         rerun = self.state.rerun
 
         uploaded_file = st.file_uploader(
-                label=uploader_state.name,
-                type=uploader_state.type,
-                key=uploader_state.key,
-                label_visibility=uploader_state.label_visibility,
-            )
+            label=uploader_state.name,
+            type=uploader_state.type,
+            key=uploader_state.key,
+            label_visibility=uploader_state.label_visibility,
+        )
         if uploaded_file is None:
             st.warning(uploader_state.disabled_message)
             chat_state.disabled = True
