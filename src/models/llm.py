@@ -17,5 +17,5 @@ class LLM:
         self.prompt = PromptTemplate(input_variables=["question", "context"], template=self.template)
         self.llm_chain = LLMChain(prompt=self.prompt, llm=self.llm_model, verbose=True)
 
-    def get_llm_chain(self):
+    def get_llm_chain(self) -> LLMChain:
         return self.llm_chain

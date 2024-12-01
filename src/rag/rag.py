@@ -34,7 +34,7 @@ class RAG:
 
         # We don't need to keep the object because its only job is to create the vector database and save it to a file
         # Maybe it should be a function?
-        VectorDbCreator(sentences=self.text_extractor.sentences, embedding_model=self.embedding_model,
+        VectorDbCreator(sentences=self.text_extractor.get_sentences(), embedding_model=self.embedding_model,
                         vector_db_path=self.data_paths.vector_db_path)
         self.vector_db = FAISS.load_local(self.data_paths.vector_db_path, self.embedding_model.model,
                                           allow_dangerous_deserialization=True)

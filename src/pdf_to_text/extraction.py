@@ -17,3 +17,6 @@ class TextExtractor:
         )
         for doc in loader_local.lazy_load():
             self.sentences.append(doc.page_content)
+
+    def get_sentences(self) -> List[str]:
+        return self.sentences
