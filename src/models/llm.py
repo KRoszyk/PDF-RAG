@@ -16,3 +16,6 @@ class LLM:
         self.llm_model = OllamaLLM(model=self.llm_model_name)
         self.prompt = PromptTemplate(input_variables=["question", "context"], template=self.template)
         self.llm_chain = LLMChain(prompt=self.prompt, llm=self.llm_model, verbose=True)
+
+    def get_llm_chain(self):
+        return self.llm_chain

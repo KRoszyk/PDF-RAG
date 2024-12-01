@@ -1,6 +1,10 @@
 from pydantic import BaseModel
 
 
+class MaxDocuments(BaseModel):
+    max_documents: int = 5
+
+
 class DataPaths(BaseModel):
     pdf_path: str = "..\data\pdf\styl.pdf"
     vector_db_path: str = "..\data\db_faiss"

@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 
 @define
-class EmbeddingModel:
+class EMBEDDING_MODEL:
     embedding_model_name: str
     model: HuggingFaceEmbeddings = None
 
