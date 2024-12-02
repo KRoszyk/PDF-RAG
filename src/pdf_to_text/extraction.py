@@ -1,17 +1,16 @@
 from typing import List
-
-from attrs import define
 from langchain_unstructured import UnstructuredLoader
+from pydantic import BaseModel
+from src.config.basics import PdfPath
 
 
-@define
-class TextExtractor:
-    file_path: str
+class TextExtractor(BaseModel):
     sentences: List[str] = []
+    pdf_config: PdfPath = PdfPath()
 
-    def __attrs_post_init__(self):
+    def extract_text(self) -> None:
         loader_local = UnstructuredLoader(
-            file_path=self.file_path,
+            file_path=self.pdf_config.pdf_path,
             strategy="hi_res",
             partition_via_api=False,
         )

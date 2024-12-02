@@ -5,13 +5,19 @@ class MaxDocuments(BaseModel):
     max_documents: int = 5
 
 
-class DataPaths(BaseModel):
+class PdfPath(BaseModel):
     pdf_path: str = "..\data\pdf\styl.pdf"
+
+
+class VectorDbPath(BaseModel):
     vector_db_path: str = "..\data\db_faiss"
 
 
-class ModelsNames(BaseModel):
+class EmbeddingModelConfig(BaseModel):
     embedding_model_name: str = "sdadas/mmlw-roberta-large"
+
+
+class LlmModelConfig(BaseModel):
     llm_model_name: str = "mwiewior/bielik"
 
 

@@ -1,10 +1,13 @@
-from src.rag.rag import RAG
+from src.rag.rag import Rag
 
 
 def run_pipeline() -> None:
-    rag = RAG()
-    print(rag.predict("Co składa się na budżet czasu?"))
-    print(rag.predict("Do czego odnosi się drugi próg?"))
+    rag = Rag()
+    rag.create_sentences()
+    rag.create_vector_db()
+    rag.load_vector_db()
+    print(rag.predict("Do czego odnosi sie drugi próg?"))
+    print(rag.predict("Jaki jest tytul 1 rozdziału?"))
 
 
 if __name__ == "__main__":
