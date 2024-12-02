@@ -15,7 +15,7 @@ class Rag:
     def __attrs_post_init__(self):
         self.vector_store = VectorStore(embedding_model=self.embedding_model)
 
-    def create_sentences(self) -> None:
+    def parse_pdf(self) -> None:
         self.text_extractor.extract_text()
 
     def create_vector_db(self) -> None:

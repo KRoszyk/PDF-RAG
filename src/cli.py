@@ -3,7 +3,7 @@ from src.rag.rag import Rag
 
 def run_pipeline() -> None:
     rag = Rag()
-    rag.create_sentences()
+    rag.parse_pdf()
     rag.create_vector_db()
     rag.load_vector_db()
     print(rag.predict("Do czego odnosi sie drugi próg?"))
