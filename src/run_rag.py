@@ -1,11 +1,8 @@
-from src.rag.rag import Rag
+from src.module_rag.rag.rag import Rag
 
 
 def run_pipeline() -> None:
     rag = Rag()
-    rag.parse_pdf()
-    rag.create_vector_db()
-    rag.load_vector_db()
     print(rag.predict("Do czego odnosi sie drugi próg?"))
     print(rag.predict("Jaki jest tytul 1 rozdziału?"))
 

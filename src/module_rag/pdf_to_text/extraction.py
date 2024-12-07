@@ -1,7 +1,7 @@
 from typing import List
 from langchain_unstructured import UnstructuredLoader
 from pydantic import BaseModel
-from src.config.basics import PdfPath
+from src.config import PdfPath
 
 
 class TextExtractor(BaseModel):

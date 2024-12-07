@@ -1,16 +1,13 @@
 from pydantic import BaseModel
 
 
-class MaxDocuments(BaseModel):
-    max_documents: int = 5
-
-
 class PdfPath(BaseModel):
     pdf_path: str = "..\data\pdf\styl.pdf"
 
 
-class VectorDbPath(BaseModel):
+class VectorDb(BaseModel):
     vector_db_path: str = "..\data\db_faiss"
+    max_documents: int = 5
 
 
 class EmbeddingModelConfig(BaseModel):

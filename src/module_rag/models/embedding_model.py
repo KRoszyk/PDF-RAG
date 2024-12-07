@@ -1,16 +1,13 @@
-from attrs import define
+from attrs import define, field
 from langchain.embeddings import HuggingFaceEmbeddings
 from typing import List, Tuple
-from src.config.basics import EmbeddingModelConfig
+from src.config import EmbeddingModelConfig
 
 
-@define
+@define(auto_attribs=True)
 class EmbeddingModel:
     model_config: EmbeddingModelConfig = EmbeddingModelConfig()
-    model: HuggingFaceEmbeddings = None
-
-    class Config:
-        arbitrary_types_allowed = True
+    model: HuggingFaceEmbeddings = field(init=False)
 
     def __attrs_post_init__(self):
         self.model = HuggingFaceEmbeddings(model_name=self.model_config.embedding_model_name)
