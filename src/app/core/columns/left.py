@@ -1,9 +1,9 @@
 import streamlit as st
 from attrs import define
 
-from src.core.chat import Chat
-from src.core.pdf.file_uploader import FileUploader
-from src.states.gui import GUIState
+from src.app.core.chat import Chat
+from src.app.core.pdf.file_uploader import FileUploader
+from src.app.states.gui import GUIState
 
 
 @define

@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
-from src.states.basics import ButtonState
-from src.states.chat import ChatState
-from src.states.pdf import PDFUploaderState, PdfViewerState
-from src.states.pdf import ContentCounter
+from src.app.states.basics import ButtonState
+from src.app.states.chat import ChatState
+from src.app.states.pdf import PDFUploaderState, PdfViewerState
+from src.app.states.pdf import ContentCounter
 
 
 class LeftColumnState(BaseModel):

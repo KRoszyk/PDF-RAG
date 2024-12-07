@@ -1,9 +1,9 @@
 import streamlit as st
 from attrs import define
 
-from src.core.pdf.pdf_viewer import PdfViewer
-from src.core.pdf.content_counter import ContentCounter
-from src.states.gui import GUIState
+from src.app.core.pdf.pdf_viewer import PdfViewer
+from src.app.core.pdf.content_counter import ContentCounter
+from src.app.states.gui import GUIState
 
 
 @define

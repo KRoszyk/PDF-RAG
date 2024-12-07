@@ -1,10 +1,10 @@
 import streamlit as st
 from attrs import define
 
-from src.core.columns.left import LeftColumn
-from src.core.columns.right import RightColumn
-from src.states.gui import GUIState
-from src.styles.css import load_css
+from src.app.core.columns.left import LeftColumn
+from src.app.core.columns.right import RightColumn
+from src.app.states.gui import GUIState
+from src.app.styles.css import load_css
 
 
 @define

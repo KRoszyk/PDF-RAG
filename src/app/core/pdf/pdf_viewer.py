@@ -1,7 +1,7 @@
 from attrs import define
 from streamlit_pdf_viewer import pdf_viewer
 
-from src.states.gui import GUIState
+from src.app.states.gui import GUIState
 
 
 @define

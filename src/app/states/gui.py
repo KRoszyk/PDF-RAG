@@ -3,8 +3,8 @@ import streamlit as st
 from pydantic import BaseModel
 from typing import Literal
 
-from src.states.basics import TitleState
-from src.states.columns import LeftColumnState, RightColumnState
+from src.app.states.basics import TitleState
+from src.app.states.columns import LeftColumnState, RightColumnState
 
 
 class GUIState(BaseModel):

@@ -1,8 +1,8 @@
 import streamlit as st
 from attrs import define
 
-from src.states.chat import UserMessage, AssistanceMessage
-from src.states.gui import GUIState
+from src.app.states.chat import UserMessage, AssistanceMessage
+from src.app.states.gui import GUIState
 
 
 @define

@@ -1,7 +1,7 @@
 import streamlit as st
 from attrs import define
 
-from src.states.gui import GUIState
+from src.app.states.gui import GUIState
 
 
 @define

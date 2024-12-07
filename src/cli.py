@@ -1,7 +1,7 @@
 import streamlit as st
 
-from src.core.gui import GUI
-from src.states.gui import GUIState
+from src.app.core.gui import GUI
+from src.app.states.gui import GUIState
 
 
 def run_app() -> None:

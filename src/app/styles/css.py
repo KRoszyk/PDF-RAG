@@ -1,6 +1,6 @@
 import streamlit as st
 
-from src.states.gui import GUIState
+from src.app.states.gui import GUIState
 
 
 def load_css(state: GUIState):
