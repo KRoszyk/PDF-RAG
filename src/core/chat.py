@@ -15,8 +15,8 @@ class Chat:
 
         # Update ChatState with the newest messages.
         if prompt := st.chat_input(
-                placeholder=chat_state.input_text_info,
-                disabled=chat_state.disabled
+            placeholder=chat_state.input_text_info,
+            disabled=chat_state.disabled
         ):
             chat_state.messages.append(UserMessage(content=prompt))
             chat_state.messages.append(AssistanceMessage(content=prompt))

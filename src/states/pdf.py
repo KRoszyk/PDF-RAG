@@ -20,3 +20,9 @@ class PDFUploaderState(BaseModel):
 
 class PdfViewerState(BaseModel):
     key: str = "viewer"
+
+
+class ContentCounter(BaseModel):
+    text: str = '0/0'
+    font_size: int = 24
+    disable_color: str = 'gray'

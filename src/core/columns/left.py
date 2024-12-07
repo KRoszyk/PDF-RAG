@@ -12,25 +12,24 @@ class LeftColumn:
 
     def __attrs_post_init__(self):
         state = self.state
-        chat_state = self.state.left_col.chat
-        uploader_state = self.state.left_col.uploader
-        rerun_state = self.state.rerun
-        delete_button_state = self.state.left_col.delete_button
-        clear_button_state = self.state.left_col.clear_button
-        # this _ is for empty space
-        _, left_button_column, _, right_button_column, _ = st.columns(self.state.layout_left_panel)
+        left_col_state = state.left_col
+        chat_state = left_col_state.chat
+        uploader_state = left_col_state.uploader
+        delete_button_state = left_col_state.delete_button
+        clear_button_state = left_col_state.clear_button
+        _, delete_pdf_button, _, clear_chat_button, _ = st.columns(left_col_state.buttons_panel_layout)
 
         if uploader_state.is_file_uploaded is False:
-            # Show file uploader
             FileUploader(state=state)
+
         else:
-            with left_button_column:
+            with delete_pdf_button:
                 if st.button(delete_button_state.name, use_container_width=True):
                     uploader_state.update_key()
                     uploader_state.is_file_uploaded = False
-                    rerun_state()
-                # Button to clear chat.
-            with right_button_column:
+                    self.state.rerun()
+
+            with clear_chat_button:
                 if st.button(clear_button_state.name, use_container_width=True):
                     chat_state.clear_chat()
 

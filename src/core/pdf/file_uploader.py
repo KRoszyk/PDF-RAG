@@ -11,7 +11,6 @@ class FileUploader:
     def __attrs_post_init__(self):
         uploader_state = self.state.left_col.uploader
         chat_state = self.state.left_col.chat
-        rerun = self.state.rerun
 
         uploaded_file = st.file_uploader(
             label=uploader_state.name,
@@ -27,4 +26,4 @@ class FileUploader:
             uploader_state.file = uploaded_file.read()
             uploader_state.is_file_uploaded = True
             chat_state.disabled = False
-            rerun()
+            self.state.rerun()

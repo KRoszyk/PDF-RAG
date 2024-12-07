@@ -13,7 +13,7 @@ class GUI:
 
 	def __attrs_post_init__(self):
 		# Set the layout to cover all the page.
-		st.set_page_config(layout=self.state.layout_type)
+		st.set_page_config(layout=self.state.layout_type, page_title=self.state.app_title)
 		# Load CSS styling.
 		load_css(state=self.state)
 		# Add header to the page.
