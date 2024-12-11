@@ -1,0 +1,16 @@
+attrs==24.2.0
+faiss-cpu==1.9.0
+langchain-community==0.3.1
+langchain-core==0.3.24
+langchain-huggingface==0.1.2
+langchain-ollama==0.2.0
+langchain-unstructured==0.1.6
+pydantic==2.9.2
+PyMuPDF==1.24.11
+pytesseract==0.3.13
+PyYAML==6.0.2
+sentence-transformers==3.3.1
+streamlit==1.39.0
+streamlit-pdf-viewer==0.0.18
+unstructured==0.16.11
+unstructured[pdf]
