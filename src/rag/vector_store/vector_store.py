@@ -1,16 +1,20 @@
 from attr import define, field
-from typing import List
 from langchain_community.vectorstores import FAISS
 
-from src.config import VectorDb
-from src.module_rag.models.embedding_model import EmbeddingModel
+from src.config import VectorDBConfig
+from src.rag.models.embeddings import EmbeddingModel
 
 
 @define(auto_attribs=True)
 class VectorStore:
     embedding_model: EmbeddingModel
-    vector_db_config: VectorDb = VectorDb()
+    sentences: list[str]
+    vector_db_config: VectorDBConfig = VectorDBConfig()
     vector_db: FAISS = field(init=False)
+
+    def __attrs_post_init__(self):
+        self.create_vector_db()
+        self.load_vector_db()
 
     def load_vector_db(self) -> None:
         self.vector_db = FAISS.load_local(
@@ -19,8 +23,8 @@ class VectorStore:
             allow_dangerous_deserialization=True
         )
 
-    def create_vector_db(self, sentences: List[str]) -> None:
-        text_embedding_pairs = self.embedding_model.get_embedding_pairs(sentences)
+    def create_vector_db(self) -> None:
+        text_embedding_pairs = self.embedding_model.get_embedding_pairs(self.sentences)
         self.vector_db = FAISS.from_embeddings(text_embedding_pairs, self.embedding_model.model)
         self.vector_db.save_local(self.vector_db_config.vector_db_path)
 
@@ -28,6 +32,6 @@ class VectorStore:
         q_embedding = self.embedding_model.get_embed_documents([question])[0]
         relevant_docs = self.vector_db.similarity_search_by_vector(
             q_embedding,
-            k=self.vector_db_config.max_documents
+            k=self.vector_db_config.top_k
         )
         return " ".join([doc.page_content for doc in relevant_docs])

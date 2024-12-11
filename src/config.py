@@ -2,24 +2,30 @@ from pydantic import BaseModel
 
 
 class PdfPath(BaseModel):
-    pdf_path: str = "..\data\pdf\styl.pdf"
+    pdf_path: str = "data/pdf/styl.pdf"
 
 
-class VectorDb(BaseModel):
-    vector_db_path: str = "..\data\db_faiss"
-    max_documents: int = 5
+class VectorDBConfig(BaseModel):
+    vector_db_path: str = "data/db_faiss"
+    top_k: int = 5
 
 
 class EmbeddingModelConfig(BaseModel):
-    embedding_model_name: str = "sdadas/mmlw-roberta-large"
+    embeddings_model_name: str = "sdadas/mmlw-roberta-large"
 
 
-class LlmModelConfig(BaseModel):
+class LLMConfig(BaseModel):
     llm_model_name: str = "mwiewior/bielik"
-
-
-class Template(BaseModel):
-    template: str = """Użyj poniższych informacji, aby odpowiedzieć na pytanie na końcu. 
-    Jeśli nie znasz odpowiedzi, po prostu powiedz, że nie wiesz, i nie próbuj wymyślać 
-    odpowiedzi. Użyj maksymalnie trzech zdań i postaraj się, aby odpowiedź była jak najkrótsza. 
-    Zawsze dodaj "dziękuję za pytanie!" na końcu swojej odpowiedzi. {context} Pytanie: {question} Pomocna odpowiedź: """
+    prompt: str = """
+    Jesteś asystentem AI z dostępem do bazy wiedzy stworzonej z paragrafów dokumentu. 
+    Na podstawie poniższego kontekstu:
+    <CONTEXT>{context}</CONTEXT>
+    
+    Udziel zwięzłej odpowiedzi na poniższe pytanie w maksymalnie dwóch zdaniach, 
+    opierając się TYLKO na informacjach podanych w kontekście: 
+    {input}
+    
+    Unikaj dodatkowych tagów takich jak "Odpowiedź:" w swojej odpowiedzi.
+    Jeśli nie możesz odpowiedzieć na pytanie, korzystając z podanego kontekstu, wyjaśnij, że nie masz wystarczających 
+    informacji, aby udzielić dokładnej odpowiedzi.
+    """

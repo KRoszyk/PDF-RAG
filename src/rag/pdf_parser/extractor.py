@@ -1,14 +1,15 @@
-from typing import List
+from attrs import define, Factory
 from langchain_unstructured import UnstructuredLoader
-from pydantic import BaseModel
+
 from src.config import PdfPath
 
 
-class TextExtractor(BaseModel):
-    sentences: List[str] = []
+@define
+class TextExtractor:
     pdf_config: PdfPath = PdfPath()
+    sentences: list[str] = Factory(list)
 
-    def extract_text(self) -> None:
+    def __attrs_post_init__(self):
         loader_local = UnstructuredLoader(
             file_path=self.pdf_config.pdf_path,
             strategy="hi_res",
@@ -16,6 +17,3 @@ class TextExtractor(BaseModel):
         )
         for doc in loader_local.lazy_load():
             self.sentences.append(doc.page_content)
-
-    def get_sentences(self) -> List[str]:
-        return self.sentences
