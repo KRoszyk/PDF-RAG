@@ -1,7 +1,7 @@
 from attr import define, field
 from langchain_community.vectorstores import FAISS
 
-from src.config import VectorDBConfig
+from src.rag.config import VectorDBConfig
 from src.rag.models.embeddings import EmbeddingModel
 
 

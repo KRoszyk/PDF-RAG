@@ -1,7 +1,7 @@
 from attrs import define, Factory
 from langchain_unstructured import UnstructuredLoader
 
-from src.config import PdfPath
+from src.rag.config import PdfPath
 
 
 @define

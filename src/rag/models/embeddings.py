@@ -1,7 +1,7 @@
 from attrs import define, field
 from langchain_huggingface import HuggingFaceEmbeddings
 
-from src.config import EmbeddingModelConfig
+from src.rag.config import EmbeddingModelConfig
 
 
 @define(auto_attribs=True)

@@ -6,7 +6,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import Runnable
 from langchain_ollama.llms import OllamaLLM
 
-from src.config import LLMConfig
+from src.rag.config import LLMConfig
 
 
 @define
