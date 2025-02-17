@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from src.app.states.basics import ButtonState
+from src.app.states.basics import ButtonState, FoundPages
 from src.app.states.chat import ChatState
 from src.app.states.pdf import PDFUploaderState, PdfViewerState
 from src.app.states.pdf import ContentCounter
@@ -12,6 +12,8 @@ class LeftColumnState(BaseModel):
     clear_button: ButtonState = ButtonState(name="Clear chat")
     uploader: PDFUploaderState = PDFUploaderState()
     chat: ChatState = ChatState()
+    rag_bool: bool = False
+    question: str = ""
 
 
 class RightColumnState(BaseModel):
@@ -20,3 +22,5 @@ class RightColumnState(BaseModel):
     next_button: ButtonState = ButtonState(name="next")
     pdf_viewer: PdfViewerState = PdfViewerState()
     content_counter: ContentCounter = ContentCounter()
+    found_pages: FoundPages = FoundPages()
+

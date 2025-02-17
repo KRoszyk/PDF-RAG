@@ -21,6 +21,9 @@ class PDFUploaderState(BaseModel):
 class PdfViewerState(BaseModel):
     key: str = "viewer"
 
+    def update_key(self, length: int = 10) -> None:
+        self.key = ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+
 
 class ContentCounter(BaseModel):
     text: str = '0/0'

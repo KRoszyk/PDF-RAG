@@ -1,19 +1,38 @@
-from attrs import define, Factory
-from langchain_unstructured import UnstructuredLoader
+from typing import Any
 
+from attrs import define, Factory
+import spacy
+from spacy_layout import spaCyLayout
+import json
 from src.rag.config import PdfPath
 
 
 @define
 class TextExtractor:
+    file: bytes
     pdf_config: PdfPath = PdfPath()
     sentences: list[str] = Factory(list)
+    spans_metadata: list[dict[str, dict[str, Any]]] = []
 
     def __attrs_post_init__(self):
-        loader_local = UnstructuredLoader(
-            file_path=self.pdf_config.pdf_path,
-            strategy="hi_res",
-            partition_via_api=False,
-        )
-        for doc in loader_local.lazy_load():
-            self.sentences.append(doc.page_content)
+        nlp = spacy.blank("en")
+        layout = spaCyLayout(nlp)
+        doc = layout(self.file)
+        for span in doc.spans["layout"]:
+            layout_data = span._.layout
+            span_info = {
+                "text": span.text,
+                "page_no": layout_data.page_no,
+                "bounding_box": {
+                    "x": layout_data.x,
+                    "y": layout_data.y,
+                    "width": layout_data.width,
+                    "height": layout_data.height
+                }
+            }
+
+            self.spans_metadata.append(span_info)
+            self.sentences.append(span.text)
+
+        with open('spans_metadata.json', 'w', encoding='utf-8') as f:
+            json.dump(self.spans_metadata, f, ensure_ascii=False, indent=4)

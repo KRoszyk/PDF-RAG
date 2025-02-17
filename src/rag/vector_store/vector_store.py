@@ -9,6 +9,7 @@ from src.rag.models.embeddings import EmbeddingModel
 class VectorStore:
     embedding_model: EmbeddingModel
     sentences: list[str]
+    similar_docs: list[str] = []
     vector_db_config: VectorDBConfig = VectorDBConfig()
     vector_db: FAISS = field(init=False)
 
@@ -34,4 +35,11 @@ class VectorStore:
             q_embedding,
             k=self.vector_db_config.top_k
         )
+        self.similar_docs = [doc.page_content for doc in relevant_docs]
         return " ".join([doc.page_content for doc in relevant_docs])
+
+    def get(self):
+        return self.similar_docs
+
+    def remove(self):
+        self.similar_docs = []
