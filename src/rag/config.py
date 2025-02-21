@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
 
-class PdfPath(BaseModel):
-    pdf_path: str = "data/pdf/styl.pdf"
+class JsonPath(BaseModel):
+    json_path: str = "data/json/spans_metadata.json"
 
 
 class VectorDBConfig(BaseModel):

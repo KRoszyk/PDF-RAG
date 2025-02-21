@@ -38,8 +38,3 @@ class VectorStore:
         self.similar_docs = [doc.page_content for doc in relevant_docs]
         return " ".join([doc.page_content for doc in relevant_docs])
 
-    def get(self):
-        return self.similar_docs
-
-    def remove(self):
-        self.similar_docs = []

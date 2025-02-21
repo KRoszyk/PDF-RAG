@@ -24,7 +24,6 @@ class FileUploader:
             chat_state.clear_chat()
         else:
             uploader_state.file = uploaded_file.read()
-            print(type(uploader_state.file))
             uploader_state.is_file_uploaded = True
             chat_state.disabled = False
             self.state.rerun()

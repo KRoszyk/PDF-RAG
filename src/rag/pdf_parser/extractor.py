@@ -4,13 +4,13 @@ from attrs import define, Factory
 import spacy
 from spacy_layout import spaCyLayout
 import json
-from src.rag.config import PdfPath
+from src.rag.config import JsonPath
 
 
 @define
 class TextExtractor:
     file: bytes
-    pdf_config: PdfPath = PdfPath()
+    json_config: JsonPath = JsonPath()
     sentences: list[str] = Factory(list)
     spans_metadata: list[dict[str, dict[str, Any]]] = []
 
@@ -34,5 +34,5 @@ class TextExtractor:
             self.spans_metadata.append(span_info)
             self.sentences.append(span.text)
 
-        with open('spans_metadata.json', 'w', encoding='utf-8') as f:
+        with open(self.json_config.json_path, 'w', encoding='utf-8') as f:
             json.dump(self.spans_metadata, f, ensure_ascii=False, indent=4)

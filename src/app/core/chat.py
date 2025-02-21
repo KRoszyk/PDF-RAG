@@ -1,7 +1,7 @@
 import streamlit as st
 from attrs import define
 
-from src.app.states.chat import UserMessage, AssistanceMessage
+from src.app.states.chat import UserMessage
 from src.app.states.gui import GUIState
 
 
@@ -20,10 +20,14 @@ class Chat:
 
         ):
             chat_state.messages.append(UserMessage(content=prompt))
-            chat_state.messages.append(AssistanceMessage(content=st.session_state.rag.invoke(prompt)))
+            chat_state.prompt = prompt
+            chat_state.trigger_new_prompt = True
 
         # Display chat messages from history on app rerun.
         with messages_container:
             for message in chat_state.messages:
                 with st.chat_message(name=message.name):
                     st.markdown(message.content, unsafe_allow_html=True)
+
+        if chat_state.trigger_new_prompt:
+            self.state.rerun()

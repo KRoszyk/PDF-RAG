@@ -26,12 +26,10 @@ class PdfViewer:
             )
 
     def mark_text(self, pdf_file: bytes) -> bytes:
-
-        phrases_to_highlight = st.session_state.rag.vector_store.get()
         pages_with_highlighted_text = []
 
-        if len(phrases_to_highlight) > 0:
-            with open('spans_metadata.json', 'r', encoding='utf-8') as f:
+        if len(self.state.right_col.pdf_viewer.phrases_to_highlight) > 0:
+            with open(self.state.right_col.pdf_viewer.json_path, 'r', encoding='utf-8') as f:
                 spans = json.load(f)
 
             pdf_document = fitz.open("pdf", pdf_file)
@@ -41,7 +39,7 @@ class PdfViewer:
                 x, y, width, height = span["bounding_box"].values()
                 text = span.get("text", "")
 
-                if any(phrase.lower() in text.lower() for phrase in phrases_to_highlight):
+                if any(phrase.lower() in text.lower() for phrase in self.state.right_col.pdf_viewer.phrases_to_highlight):
                     page = pdf_document.load_page(page_number)
                     rect = fitz.Rect(x, y, x + width, y + height)
                     page.draw_rect(rect, color=(1, 0, 0), width=2)
@@ -53,7 +51,7 @@ class PdfViewer:
             output_pdf_bytes.seek(0)
             self.state.right_col.found_pages.change_pages(pages=pages_with_highlighted_text)
             self.state.right_col.pdf_viewer.update_key()
-            st.session_state.rag.vector_store.remove()
+            self.state.right_col.pdf_viewer.phrases_to_highlight = []
             return output_pdf_bytes.read()
         else:
             return pdf_file

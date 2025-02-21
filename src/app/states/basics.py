@@ -11,9 +11,8 @@ class TitleState(BaseModel):
 
 
 class FoundPages(BaseModel):
-    pages: list[int] | None = None
+    pages: list[int] = []
     actual_page: int = 1
 
     def change_pages(self, pages: list[int]):
         self.pages = pages
-        print(pages)

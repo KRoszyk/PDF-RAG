@@ -20,6 +20,8 @@ class PDFUploaderState(BaseModel):
 
 class PdfViewerState(BaseModel):
     key: str = "viewer"
+    json_path: str = "data/json/spans_metadata.json"
+    phrases_to_highlight: list[str] = []
 
     def update_key(self, length: int = 10) -> None:
         self.key = ''.join(random.choices(string.ascii_letters + string.digits, k=length))

@@ -27,7 +27,7 @@ class LeftColumn:
                 if st.button(delete_button_state.name, use_container_width=True):
                     uploader_state.update_key()
                     uploader_state.is_file_uploaded = False
-                    state.left_col.rag_bool = False
+                    state.left_col.rag_trigger = False
                     self.state.rerun()
 
             with clear_chat_button:

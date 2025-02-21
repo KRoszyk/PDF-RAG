@@ -15,14 +15,11 @@ class RAGInterface:
     text_extractor: TextExtractor = field(init=False)
 
     def __attrs_post_init__(self):
-        print("stworzono")
         self.text_extractor = TextExtractor(file=self.file)
-        print("extractor_ended")
         self.vector_store = VectorStore(
             embedding_model=self.embedding_model,
             sentences=self.text_extractor.sentences
         )
-        print("vector_db_ended")
 
     def invoke(self, question: str) -> str:
         context = self.vector_store.get_similar_docs(question)
