@@ -28,7 +28,10 @@ class LeftColumn:
                     uploader_state.update_key()
                     uploader_state.is_file_uploaded = False
                     state.left_col.rag_created = False
-                    self.state.rerun()
+                    state.right_col.scroll_counter.scroll_count = 0
+                    state.right_col.scroll_counter.actual_scroll_position = 0
+                    state.right_col.pdf_viewer.annotations = []
+                    state.rerun()
 
             with clear_chat_button:
                 if st.button(clear_button_state.name, use_container_width=True):

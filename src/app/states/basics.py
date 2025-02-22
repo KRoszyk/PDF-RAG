@@ -10,9 +10,6 @@ class TitleState(BaseModel):
     key: str = ""
 
 
-class FoundPages(BaseModel):
-    pages: list[int] = []
-    actual_page: int = 1
-
-    def change_pages(self, pages: list[int]):
-        self.pages = pages
+class ScrollCounter(BaseModel):
+    scroll_count: int = 0
+    actual_scroll_position: int = 0

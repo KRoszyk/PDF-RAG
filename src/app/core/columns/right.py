@@ -25,19 +25,17 @@ class RightColumn:
         with prev_content_button:
             if (st.button(previous_button_state.name, disabled=not uploader_state.is_file_uploaded,
                           use_container_width=True)):
-                self.state.right_col.found_pages.actual_page = next(
-                    (i for i in reversed(self.state.right_col.found_pages.pages) if
-                     i < self.state.right_col.found_pages.actual_page),
-                    self.state.right_col.found_pages.actual_page
-                )
+                if state.right_col.scroll_counter.scroll_count > 0:
+                    if state.right_col.scroll_counter.actual_scroll_position > 1:
+                        state.right_col.scroll_counter.actual_scroll_position -= 1
+                        state.rerun()
 
         with next_content_button:
             if st.button(next_button_state.name, disabled=not uploader_state.is_file_uploaded,
                          use_container_width=True):
-                self.state.right_col.found_pages.actual_page = next(
-                    (i for i in self.state.right_col.found_pages.pages if
-                     i > self.state.right_col.found_pages.actual_page),
-                    self.state.right_col.found_pages.actual_page
-                )
+                if state.right_col.scroll_counter.scroll_count > 0:
+                    if state.right_col.scroll_counter.actual_scroll_position < state.right_col.scroll_counter.scroll_count:
+                        state.right_col.scroll_counter.actual_scroll_position += 1
+                        state.rerun()
 
-        PdfViewer(state=state, page_number=self.state.right_col.found_pages.actual_page)
+        PdfViewer(state=state, actual_scroll_position=state.right_col.scroll_counter.actual_scroll_position)

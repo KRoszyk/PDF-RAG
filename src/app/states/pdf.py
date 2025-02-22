@@ -22,12 +22,13 @@ class PdfViewerState(BaseModel):
     key: str = "viewer"
     json_path: str = "data/json/spans_metadata.json"
     phrases_to_highlight: list[str] = []
+    annotations: list = []
 
     def update_key(self, length: int = 10) -> None:
         self.key = ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
 
 class ContentCounter(BaseModel):
-    text: str = '0/0'
+    text: str = ""
     font_size: int = 24
     disable_color: str = 'gray'
