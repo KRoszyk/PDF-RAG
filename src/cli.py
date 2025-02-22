@@ -14,9 +14,9 @@ def run_app() -> None:
     file = state.left_col.uploader.file
 
     # create rag if file is uploaded
-    if state.left_col.uploader.is_file_uploaded and state.left_col.rag_trigger is False:
+    if state.left_col.uploader.is_file_uploaded and state.left_col.rag_created is False:
         st.session_state.rag = RAGInterface(file)
-        state.left_col.rag_trigger = True
+        state.left_col.rag_created = True
 
     # get answer from RAG
     if state.left_col.chat.trigger_new_prompt:

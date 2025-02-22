@@ -10,6 +10,8 @@ PyMuPDF==1.24.11
 pytesseract==0.3.13
 PyYAML==6.0.2
 sentence-transformers==3.3.1
+spacy~=3.8.3
+spacy_layout~=0.0.11
 streamlit==1.39.0
 streamlit-pdf-viewer==0.0.18
 unstructured==0.16.11
