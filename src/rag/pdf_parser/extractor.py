@@ -22,6 +22,11 @@ class TextExtractor:
         self.sentences = []
 
         for span in doc.spans["layout"]:
+
+            # Filter data
+            if len(span.text) < 3:
+                continue
+
             layout_data = span._.layout
             span_info = {
                 "text": span.text,
@@ -33,11 +38,8 @@ class TextExtractor:
                     "height": layout_data.height
                 }
             }
-
             self.spans_metadata.append(span_info)
             self.sentences.append(span.text)
 
         with open(self.json_config.json_path, 'w', encoding='utf-8') as f:
             json.dump(self.spans_metadata, f, ensure_ascii=False, indent=4)
-
-
