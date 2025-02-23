@@ -32,3 +32,5 @@ class ContentCounter(BaseModel):
     text: str = ""
     font_size: int = 24
     disable_color: str = 'gray'
+    scroll_count: int = 0
+    actual_scroll_position: int = 0

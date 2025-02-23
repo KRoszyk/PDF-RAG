@@ -58,8 +58,8 @@ class PdfViewer:
             output_pdf_bytes.seek(0)
             self.state.right_col.pdf_viewer.update_key()
             self.state.right_col.pdf_viewer.phrases_to_highlight = []
-            self.state.right_col.scroll_counter.scroll_count = len(self.state.right_col.pdf_viewer.annotations)
-            self.state.right_col.scroll_counter.actual_scroll_position = 1
+            self.state.right_col.content_counter.scroll_count = len(self.state.right_col.pdf_viewer.annotations)
+            self.state.right_col.content_counter.actual_scroll_position = 1
             return output_pdf_bytes.read()
         else:
             return pdf_file

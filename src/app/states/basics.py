@@ -10,6 +10,4 @@ class TitleState(BaseModel):
     key: str = ""
 
 
-class ScrollCounter(BaseModel):
-    scroll_count: int = 0
-    actual_scroll_position: int = 0
+

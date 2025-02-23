@@ -28,8 +28,8 @@ class LeftColumn:
                     uploader_state.update_key()
                     uploader_state.is_file_uploaded = False
                     state.left_col.rag_created = False
-                    state.right_col.scroll_counter.scroll_count = 0
-                    state.right_col.scroll_counter.actual_scroll_position = 0
+                    state.right_col.content_counter.scroll_count = 0
+                    state.right_col.content_counter.actual_scroll_position = 0
                     state.right_col.pdf_viewer.annotations = []
                     state.right_col.pdf_viewer.phrases_to_highlight = []
                     state.rerun()

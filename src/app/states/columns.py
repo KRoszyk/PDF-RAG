@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from src.app.states.basics import ButtonState, ScrollCounter
+from src.app.states.basics import ButtonState
 from src.app.states.chat import ChatState
 from src.app.states.pdf import PDFUploaderState, PdfViewerState
 from src.app.states.pdf import ContentCounter
@@ -21,4 +21,3 @@ class RightColumnState(BaseModel):
     next_button: ButtonState = ButtonState(name="next")
     pdf_viewer: PdfViewerState = PdfViewerState()
     content_counter: ContentCounter = ContentCounter()
-    scroll_counter: ScrollCounter = ScrollCounter()

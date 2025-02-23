@@ -23,7 +23,7 @@ class TextExtractor:
 
         for span in doc.spans["layout"]:
 
-            # Filter data
+            # Data filter
             if len(span.text) < 3:
                 continue
 

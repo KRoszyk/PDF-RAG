@@ -25,17 +25,17 @@ class RightColumn:
         with prev_content_button:
             if (st.button(previous_button_state.name, disabled=not uploader_state.is_file_uploaded,
                           use_container_width=True)):
-                if state.right_col.scroll_counter.scroll_count > 0:
-                    if state.right_col.scroll_counter.actual_scroll_position > 1:
-                        state.right_col.scroll_counter.actual_scroll_position -= 1
+                if state.right_col.content_counter.scroll_count > 0:
+                    if state.right_col.content_counter.actual_scroll_position > 1:
+                        state.right_col.content_counter.actual_scroll_position -= 1
                         state.rerun()
 
         with next_content_button:
             if st.button(next_button_state.name, disabled=not uploader_state.is_file_uploaded,
                          use_container_width=True):
-                if state.right_col.scroll_counter.scroll_count > 0:
-                    if state.right_col.scroll_counter.actual_scroll_position < state.right_col.scroll_counter.scroll_count:
-                        state.right_col.scroll_counter.actual_scroll_position += 1
+                if state.right_col.content_counter.scroll_count > 0:
+                    if state.right_col.content_counter.actual_scroll_position < state.right_col.content_counter.scroll_count:
+                        state.right_col.content_counter.actual_scroll_position += 1
                         state.rerun()
 
-        PdfViewer(state=state, actual_scroll_position=state.right_col.scroll_counter.actual_scroll_position)
+        PdfViewer(state=state, actual_scroll_position=state.right_col.content_counter.actual_scroll_position)
