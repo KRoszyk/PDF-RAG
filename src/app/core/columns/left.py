@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 from attrs import define
 
@@ -31,6 +33,7 @@ class LeftColumn:
                     state.right_col.scroll_counter.scroll_count = 0
                     state.right_col.scroll_counter.actual_scroll_position = 0
                     state.right_col.pdf_viewer.annotations = []
+                    state.right_col.pdf_viewer.phrases_to_highlight = []
                     state.rerun()
 
             with clear_chat_button:

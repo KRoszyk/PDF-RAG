@@ -18,6 +18,9 @@ class TextExtractor:
         nlp = spacy.blank("en")
         layout = spaCyLayout(nlp)
         doc = layout(self.file)
+        self.spans_metadata = []
+        self.sentences = []
+
         for span in doc.spans["layout"]:
             layout_data = span._.layout
             span_info = {
@@ -36,3 +39,5 @@ class TextExtractor:
 
         with open(self.json_config.json_path, 'w', encoding='utf-8') as f:
             json.dump(self.spans_metadata, f, ensure_ascii=False, indent=4)
+
+
