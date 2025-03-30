@@ -16,17 +16,26 @@ class RightColumn:
         uploader_state = self.state.left_col.uploader
         next_button_state = right_col_state.next_button
         previous_button_state = right_col_state.previous_button
-        _, content_counter_text, prev_content_button, _, next_content_button, _ = st.columns(right_col_state.buttons_panel_layout)
+        _, content_counter_text, prev_content_button, _, next_content_button, _ = st.columns(
+            right_col_state.buttons_panel_layout)
 
         with content_counter_text:
             ContentCounter(state=state)
 
         with prev_content_button:
-            st.button(previous_button_state.name, disabled=not uploader_state.is_file_uploaded,
-                      use_container_width=True)
+            if (st.button(previous_button_state.name, disabled=not uploader_state.is_file_uploaded,
+                          use_container_width=True)):
+                if state.right_col.content_counter.scroll_count > 0:
+                    if state.right_col.content_counter.actual_scroll_position > 1:
+                        state.right_col.content_counter.actual_scroll_position -= 1
+                        state.rerun()
 
         with next_content_button:
-            st.button(next_button_state.name, disabled=not uploader_state.is_file_uploaded,
-                      use_container_width=True)
+            if st.button(next_button_state.name, disabled=not uploader_state.is_file_uploaded,
+                         use_container_width=True):
+                if state.right_col.content_counter.scroll_count > 0:
+                    if state.right_col.content_counter.actual_scroll_position < state.right_col.content_counter.scroll_count:
+                        state.right_col.content_counter.actual_scroll_position += 1
+                        state.rerun()
 
-        PdfViewer(state=state)
+        PdfViewer(state=state, actual_scroll_position=state.right_col.content_counter.actual_scroll_position)

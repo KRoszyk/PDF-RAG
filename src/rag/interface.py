@@ -8,12 +8,14 @@ from src.rag.vector_store.vector_store import VectorStore
 
 @define
 class RAGInterface:
-    text_extractor: TextExtractor = TextExtractor()
+    file: bytes
     embedding_model: EmbeddingModel = EmbeddingModel()
     llm: LLM = LLM()
     vector_store: VectorStore = field(init=False)
+    text_extractor: TextExtractor = field(init=False)
 
     def __attrs_post_init__(self):
+        self.text_extractor = TextExtractor(file=self.file)
         self.vector_store = VectorStore(
             embedding_model=self.embedding_model,
             sentences=self.text_extractor.sentences

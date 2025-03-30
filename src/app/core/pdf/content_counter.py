@@ -11,11 +11,11 @@ class ContentCounter:
     def __attrs_post_init__(self):
         uploader_state = self.state.left_col.uploader
         content_counter = self.state.right_col.content_counter
-
+        content_counter.text = str(content_counter.actual_scroll_position) + "/" + str(content_counter.scroll_count)
         if uploader_state.is_file_uploaded is True:
             st.markdown(
-                f'<p style="font-size: {content_counter.font_size}px;">{content_counter.text}</p>',
-                unsafe_allow_html=True
+                    f'<p style="font-size: {content_counter.font_size}px;">{content_counter.text}</p>',
+                    unsafe_allow_html=True
             )
         else:
             st.markdown(
